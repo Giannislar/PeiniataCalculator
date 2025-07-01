@@ -1,4 +1,5 @@
 Peiniata Calculator 🍕
+
 A powerful web app that solves the common office problem of fairly splitting group food orders, especially for services like efood that involve complex discounts and fees.
 
 ➡️ Live Demo: https://giannislar.github.io/PeiniataCalculator/
