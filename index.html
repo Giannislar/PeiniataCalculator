@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Πεινιάτα Calculator</title>
+    <title>Peiniata Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
         }
-        h1 { text-align: center; color: var(--danger-color); margin-bottom: 25px; font-weight: 700; }
+        h1 { text-align: center; color: var(--danger-color); margin-bottom: 25px; font-weight: 700; margin-top: 10px; }
         h2 { text-align: center; color: var(--text-color); margin-bottom: 25px;}
         .card {
             background-color: var(--card-bg-color); padding: 20px;
@@ -114,19 +114,30 @@
             background-color: var(--card-bg-color); border: 1px solid var(--border-color);
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
             cursor: pointer; box-shadow: var(--box-shadow); z-index: 1002;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
         }
-        #theme-toggle svg { width: 22px; height: 22px; fill: var(--text-color); transition: fill 0.3s; }
+        #theme-toggle:hover { transform: scale(1.1); }
+        #theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-color);
+            fill: none;
+            transition: stroke 0.3s;
+        }
     </style>
 </head>
 <body onload="initialize()">
 
     <div id="theme-toggle" onclick="toggleTheme()">
-        <svg id="theme-icon-sun" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.64 5.64c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L5.64 2.81c-.39-.39-1.02-.39-1.41 0s-.39 1.02 0 1.41l1.41 1.42zm12.72 12.72c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41l-1.41-1.41c-.39-.39-1.02-.39-1.41 0s-.39 1.02 0 1.41l1.41 1.41zM2.81 18.36c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41l-1.41-1.41c-.39-.39-1.02-.39-1.41 0s-.39 1.02 0 1.41l1.41 1.41zm12.72-12.72c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41l-1.41-1.41c-.39-.39-1.02-.39-1.41 0s-.39 1.02 0 1.41l1.41 1.41z"/></svg>
-        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.1 12.08c-2.33-4.51-.5-8.48.53-10.07-1.27.13-2.5.64-3.63 1.44-4.28 2.95-3.01 9.38 2.56 12.33 5.37 2.86 11.03-.59 12.63-6.03-.13.34-.27.67-.42.99-1.92 4.95-7.61 7.23-12.18 4.31z"/></svg>
+        <svg id="theme-icon-sun" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </div>
     
-    <h1>Πεινιάτα Calculator</h1>
+    <div style="text-align: center;">
+        <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.jpg" alt="Peiniata Calculator Logo" style="max-width: 250px; height: auto; border-radius: 12px; margin-bottom: 15px;">
+    </div>
+
+    <h1>Peiniata Calculator</h1>
 
     <div class="card">
         <div class="input-section">
@@ -152,7 +163,7 @@
     </div>
     <div class="card" id="results-area" style="display:none; margin-top: 25px;">
         <h2 style="margin-bottom: 15px;">Αποτελέσματα</h2>
-        <p id="summary-title" style="font-size: 1.1em;"></p>
+        <p id="summary-title" style="font-size: 1.1em; text-align: center; line-height: 1.6;"></p>
         <table id="results-table"></table>
     </div>
     <div class="card" id="history-section" style="margin-top: 25px;">
@@ -183,16 +194,18 @@
             renderNames();
         }
 
-        // --- Theme Management ---
         function setTheme(theme) {
             document.body.classList.remove('dark-theme');
+            const svgs = document.querySelectorAll('#theme-toggle svg');
             if (theme === 'dark') {
                 document.body.classList.add('dark-theme');
                 document.getElementById('theme-icon-sun').style.display = 'block';
                 document.getElementById('theme-icon-moon').style.display = 'none';
+                svgs.forEach(svg => svg.style.stroke = 'var(--text-color)');
             } else {
                 document.getElementById('theme-icon-sun').style.display = 'none';
                 document.getElementById('theme-icon-moon').style.display = 'block';
+                svgs.forEach(svg => svg.style.stroke = 'var(--text-color)');
             }
             localStorage.setItem('theme', theme);
         }
@@ -208,7 +221,6 @@
             setTheme(savedTheme);
         }
         
-        // --- Core Application Logic ---
         function addItem() {
             const nameInput = document.getElementById('name-input');
             const costInput = document.getElementById('cost-input');
@@ -229,7 +241,10 @@
 
         function hideDropdown() {
             setTimeout(() => {
-                document.getElementById('custom-dropdown-menu').style.display = 'none';
+                const dropdown = document.getElementById('custom-dropdown-menu');
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
             }, 200);
         }
 
@@ -254,7 +269,7 @@
         }
 
         function getNames() {
-            let names = JSON.parse(localStorage.getItem('piniataNames'));
+            let names = JSON.parse(localStorage.getItem('peiniataNames'));
             if (!names || names.length === 0) {
                 names = ['Αναστασία', 'Βάσω', 'Γιάννης', 'Δήμητρα', 'Ελένη Μπ.', 'Ελένη Τ.', 'Έυα', 'Κατερίνα', 'Στέργιος', 'Ιωάννα', 'Λιάνα', 'Μάνια'];
             }
@@ -303,7 +318,6 @@
         function calculateFinalCosts() {
             if (items.length === 0) { alert("Πρέπει πρώτα να προσθέσετε άτομα/είδη."); return; }
             
-            // **ΔΙΟΡΘΩΜΕΝΗ ΛΟΓΙΚΗ ΥΠΟΛΟΓΙΣΜΟΥ**
             const serviceFeeString = document.getElementById('service-fee').value.replace(',', '.');
             const totalServiceFee = parseFloat(serviceFeeString) || 0;
             const totalInitialCost = items.reduce((sum, item) => sum + item.cost, 0);
@@ -362,7 +376,7 @@
                 let names = getNames();
                 if (!names.find(n => n.toLowerCase() === newName.toLowerCase())) {
                     names.push(newName);
-                    localStorage.setItem('piniataNames', JSON.stringify(names));
+                    localStorage.setItem('peiniataNames', JSON.stringify(names));
                     renderNames();
                     newNameInput.value = '';
                 } else { alert('Αυτό το όνομα υπάρχει ήδη.'); }
@@ -372,7 +386,7 @@
             if (confirm(`Είστε σίγουροι ότι θέλετε να διαγράψετε το όνομα "${nameToRemove}";`)) {
                 let names = getNames();
                 const updatedNames = names.filter(name => name !== nameToRemove);
-                localStorage.setItem('piniataNames', JSON.stringify(updatedNames));
+                localStorage.setItem('peiniataNames', JSON.stringify(updatedNames));
                 renderNames();
             }
         }
@@ -389,14 +403,14 @@
         function openNamesModal() { document.getElementById('namesModal').style.display = 'block'; }
         function closeNamesModal() { document.getElementById('namesModal').style.display = 'none'; }
         function saveToHistory(calculation) {
-            let history = JSON.parse(localStorage.getItem('piniataHistory')) || [];
+            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
             history.unshift(calculation);
             if (history.length > 20) history.pop();
-            localStorage.setItem('piniataHistory', JSON.stringify(history));
+            localStorage.setItem('peiniataHistory', JSON.stringify(history));
             renderHistory();
         }
         function renderHistory() {
-            let history = JSON.parse(localStorage.getItem('piniataHistory')) || [];
+            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
             const historyList = document.getElementById('history-list');
             const clearBtn = document.getElementById('clear-history-btn');
             historyList.innerHTML = "";
@@ -415,7 +429,7 @@
             }
         }
         function loadFromHistory(id) {
-            let history = JSON.parse(localStorage.getItem('piniataHistory')) || [];
+            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
             const calculation = history.find(c => c.id === id);
             if (calculation) {
                 items = calculation.items.map((item, index) => ({ id: index, name: item.name, cost: item.originalCost }));
@@ -428,7 +442,7 @@
         }
         function clearHistory() {
             if (confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε ολόκληρο το ιστορικό;")) {
-                localStorage.removeItem('piniataHistory');
+                localStorage.removeItem('peiniataHistory');
                 renderHistory();
             }
         }
