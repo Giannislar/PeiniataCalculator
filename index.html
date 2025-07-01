@@ -7,76 +7,72 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23f8f9fa'/%3E%3Cg transform='translate(10,5) rotate(-5, 50, 50)'%3E%3Cpath d='M40,75 L25,90 L20,85 L35,70 Z' fill='%233498db'/%3E%3Cpath d='M60,75 L75,90 L80,85 L65,70 Z' fill='%233498db'/%3E%3Cpath d='M45,80 L30,95 L25,90 L40,75 Z' fill='%23e74c3c'/%3E%3Cpath d='M55,80 L70,95 L75,90 L60,75 Z' fill='%23e74c3c'/%3E%3Cpath d='M30,30 C30,10 70,10 70,30 L70,70 C70,90 30,90 30,70 Z' fill='%23f1c40f'/%3E%3Cpath d='M70,30 C90,30 90,50 70,50 L70,30 Z' fill='%23f39c12'/%3E%3Cpath d='M30,40 L10,30 L15,20 L35,35 Z' fill='%232ecc71'/%3E%3Ccircle cx='45' cy='40' r='4' fill='white'/%3E%3Ccircle cx='45' cy='40' r='2' fill='black'/%3E%3Ccircle cx='55' cy='40' r='4' fill='white'/%3E%3Ccircle cx='55' cy='40' r='2' fill='black'/%3E%3C/g%3E%3C/svg%3E">
+    <link rel="icon" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/favicon-16x16.png">
     <style>
         :root {
             --primary-color: #007bff;
             --success-color: #28a745;
             --danger-color: #dc3545;
-            /* **ΑΛΛΑΓΗ:** Ορισμός μεταβλητών για το gradient */
-            --gradient-light: linear-gradient(-45deg, #B2FEFA, #D3CCE3, #E9E4F0, #F3E5F5);
+            --bg-color: #f8f9fa;
             --text-color: #212529;
-            --card-bg-color: rgba(255, 255, 255, 0.85); /* Ημιδιαφάνεια για τις κάρτες */
+            --card-bg-color: #ffffff;
             --border-color: #dee2e6;
             --input-bg-color: #ffffff;
             --history-hover-color: #e9ecef;
-            --table-header-color: rgba(248, 249, 250, 0.8);
-            --box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            --table-header-color: #f8f9fa;
+            --box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         }
         body.dark-theme {
-            --gradient-dark: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c2331);
+            --bg-color: #121212;
             --text-color: #e0e0e0;
-            --card-bg-color: rgba(30, 30, 30, 0.75); /* Ημιδιαφάνεια για τις κάρτες */
+            --card-bg-color: #1e1e1e;
             --border-color: #444;
             --input-bg-color: #2a2a2a;
-            --history-hover-color: #383838;
-            --table-header-color: rgba(42, 42, 42, 0.8);
-            --box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            --history-hover-color: #333;
+            --table-header-color: #2a2a2a;
+            --box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
-        /* **ΑΛΛΑΓΗ:** Keyframes για την κίνηση του gradient */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         body { 
             font-family: 'Poppins', sans-serif;
             max-width: 700px; margin: 30px auto; padding: 15px; 
+            background-color: var(--bg-color); 
             color: var(--text-color);
-            transition: color 0.3s;
-            /* **ΑΛΛΑΓΗ:** Εφαρμογή του animated gradient */
-            background: var(--gradient-light);
-            background-size: 400% 400%;
-            animation: gradientAnimation 18s ease infinite;
+            transition: background-color 0.3s, color 0.3s;
         }
-        body.dark-theme {
-             background: var(--gradient-dark);
-             background-size: 400% 400%;
-             animation: gradientAnimation 18s ease infinite;
-        }
-
-        h1 { text-align: center; color: var(--danger-color); margin-bottom: 25px; font-weight: 700; }
+        h1 { text-align: center; color: var(--danger-color); margin-bottom: 25px; font-weight: 700; margin-top: 10px; }
         h2 { text-align: center; color: var(--text-color); margin-bottom: 25px;}
         .card {
             background-color: var(--card-bg-color); padding: 20px;
-            border-radius: 16px; box-shadow: var(--box-shadow);
+            border-radius: 12px; box-shadow: var(--box-shadow);
             margin-bottom: 25px; border: 1px solid var(--border-color);
             transition: background-color 0.3s, border-color 0.3s;
-            backdrop-filter: blur(10px); /* Glassmorphism effect */
-            -webkit-backdrop-filter: blur(10px);
         }
-        /* ... τα υπόλοιπα στυλ παραμένουν ίδια ... */
         .input-section { display: flex; gap: 10px; align-items: center;}
-        .input-section input { flex: 1; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1em; font-family: 'Poppins', sans-serif; background-color: var(--input-bg-color); color: var(--text-color); }
+        .input-section input {
+            flex: 1; padding: 12px; border: 1px solid var(--border-color);
+            border-radius: 8px; font-size: 1em; font-family: 'Poppins', sans-serif;
+            background-color: var(--input-bg-color); color: var(--text-color);
+        }
         .name-input-wrapper { position: relative; flex: 1; }
-        .btn-add { padding: 12px 20px; background-color: var(--success-color); color: white; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; transition: background-color 0.2s, transform 0.1s; }
+        .btn-add {
+            padding: 12px 20px; background-color: var(--success-color); color: white; border: none;
+            border-radius: 8px; font-weight: 500; cursor: pointer; transition: background-color 0.2s, transform 0.1s;
+        }
         .btn-add:hover { background-color: #218838; }
         #items-list { margin-top: 20px; }
-        .item-entry { display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 8px; animation: fadeIn 0.4s ease; }
+        .item-entry {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;
+            margin-bottom: 8px; animation: fadeIn 0.4s ease;
+        }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .actions-container { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-        .actions-container button { border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.2s; color: white; width: 100%; }
+        .actions-container button {
+            border: none; border-radius: 8px; font-weight: 600;
+            cursor: pointer; transition: background-color 0.2s; color: white; width: 100%;
+        }
         .main-action { padding: 15px; font-size: 1.2em; }
         .secondary-actions { display: flex; gap: 15px; }
         .secondary-actions button { flex: 1; padding: 12px; font-size: 1em; }
@@ -86,26 +82,50 @@
         .btn-danger:hover { background-color: #c82333; }
         .btn-primary { background-color: var(--primary-color); }
         .btn-primary:hover { background-color: #0056b3; }
-        .custom-dropdown { display: none; position: absolute; background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); width: 100%; max-height: 200px; overflow-y: auto; z-index: 1001; }
+        .custom-dropdown {
+            display: none; position: absolute; background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            width: 100%; max-height: 200px; overflow-y: auto; z-index: 1001;
+        }
         .custom-dropdown-item { padding: 12px 16px; cursor: pointer; display: block; }
         .custom-dropdown-item:hover { background-color: var(--history-hover-color); }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
-        .modal-content { background-color: var(--card-bg-color); margin: 15% auto; padding: 25px; border: 1px solid var(--border-color); width: 80%; max-width: 500px; border-radius: 12px; animation: modalopen 0.4s; }
+        .modal-content {
+             background-color: var(--card-bg-color); margin: 15% auto; padding: 25px; 
+             border: 1px solid var(--border-color); width: 80%; max-width: 500px; 
+             border-radius: 12px; animation: modalopen 0.4s;
+        }
         @keyframes modalopen { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
         .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
         .modal-action-btn { width: 100%; padding: 12px; margin-top: 10px; background-color: var(--success-color); color: white; border: none; border-radius: 8px; font-size: 1.1em; font-weight: 500; cursor: pointer; transition: background-color 0.2s; }
         .history-item { padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px; cursor: pointer; transition: background-color 0.2s, box-shadow 0.2s; text-align: left; }
         .history-item:hover { background-color: var(--history-hover-color); }
         .history-item-header { display: flex; justify-content: space-between; font-weight: 600; }
-        .clear-history-btn { display: block; margin: 20px auto 0; background-color: var(--danger-color); color: var(--white-color); border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 500; transition: background-color 0.2s; }
+        .clear-history-btn {
+            display: block; margin: 20px auto 0; background-color: var(--danger-color); color: var(--white-color);
+            border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;
+            font-weight: 500; transition: background-color 0.2s;
+        }
         .clear-history-btn:hover { background-color: #c82333; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border-color); }
         th { font-weight: 600; background-color: var(--table-header-color); }
         .final-cost { font-weight: bold; color: var(--primary-color); font-size: 1.1em; }
-        #theme-toggle { position: fixed; top: 20px; right: 20px; width: 45px; height: 45px; background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: var(--box-shadow); z-index: 1002; transition: background-color 0.3s, border-color 0.3s, transform 0.2s; }
+        #theme-toggle {
+            position: fixed; top: 20px; right: 20px; width: 45px; height: 45px;
+            background-color: var(--card-bg-color); border: 1px solid var(--border-color);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; box-shadow: var(--box-shadow); z-index: 1002;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+        }
         #theme-toggle:hover { transform: scale(1.1); }
-        #theme-toggle svg { width: 24px; height: 24px; stroke: var(--text-color); fill: none; transition: stroke 0.3s; }
+        #theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-color);
+            fill: none;
+            transition: stroke 0.3s;
+        }
     </style>
 </head>
 <body onload="initialize()">
@@ -114,10 +134,13 @@
         <svg id="theme-icon-sun" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </div>
-    <h1>Peiniata Calculator</h1>
+    
     <div style="text-align: center;">
         <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.png" alt="Peiniata Calculator Logo" style="max-width: 250px; height: auto; border-radius: 12px; margin-bottom: 15px;">
     </div>
+
+    <h1>Peiniata Calculator</h1>
+
     <div class="card">
         <div class="input-section">
             <div class="name-input-wrapper">
@@ -165,36 +188,273 @@
     </div>
 
     <script>
-        // Ο κώδικας JavaScript παραμένει ακριβώς ο ίδιος με την προηγούμενη έκδοση
         let items = []; let itemIdCounter = 0;
-        function initialize() { initializeTheme(); renderHistory(); renderNames(); }
-        function setTheme(theme) { document.body.classList.remove('dark-theme'); const svgs = document.querySelectorAll('#theme-toggle svg'); if (theme === 'dark') { document.body.classList.add('dark-theme'); document.getElementById('theme-icon-sun').style.display = 'block'; document.getElementById('theme-icon-moon').style.display = 'none'; svgs.forEach(svg => svg.style.stroke = 'var(--text-color)'); } else { document.getElementById('theme-icon-sun').style.display = 'none'; document.getElementById('theme-icon-moon').style.display = 'block'; svgs.forEach(svg => svg.style.stroke = 'var(--text-color)'); } localStorage.setItem('theme', theme); }
-        function toggleTheme() { const currentTheme = localStorage.getItem('theme') || 'light'; const newTheme = currentTheme === 'light' ? 'dark' : 'light'; setTheme(newTheme); }
-        function initializeTheme() { const savedTheme = localStorage.getItem('theme') || 'light'; setTheme(savedTheme); }
-        function addItem() { const nameInput = document.getElementById('name-input'); const costInput = document.getElementById('cost-input'); const name = nameInput.value.trim(); const costString = costInput.value.replace(',', '.'); const cost = parseFloat(costString); if (name === "" || isNaN(cost) || cost <= 0) { alert("Παρακαλώ συμπληρώστε ένα έγκυρο όνομα και θετικό κόστος."); return; } items.push({ id: itemIdCounter++, name, cost }); renderItems(); nameInput.value = ""; costInput.value = ""; nameInput.focus(); }
-        function showDropdown() { document.getElementById('custom-dropdown-menu').style.display = 'block'; filterDropdown(); }
-        function hideDropdown() { setTimeout(() => { const dropdown = document.getElementById('custom-dropdown-menu'); if (dropdown) { dropdown.style.display = 'none'; } }, 200); }
-        function filterDropdown() { const input = document.getElementById('name-input'); const filter = input.value.toUpperCase(); const dropdown = document.getElementById('custom-dropdown-menu'); const items = dropdown.getElementsByClassName('custom-dropdown-item'); for (let i = 0; i < items.length; i++) { const txtValue = items[i].textContent || items[i].innerText; if (txtValue.toUpperCase().indexOf(filter) > -1) { items[i].style.display = ""; } else { items[i].style.display = "none"; } } }
-        function selectName(name) { document.getElementById('name-input').value = name; hideDropdown(); }
-        function getNames() { let names = JSON.parse(localStorage.getItem('peiniataNames')); if (!names || names.length === 0) { names = ['Αναστασία', 'Βάσω', 'Γιάννης', 'Δήμητρα', 'Ελένη Μπ.', 'Ελένη Τ.', 'Έυα', 'Κατερίνα', 'Στέργιος', 'Ιωάννα', 'Λιάνα', 'Μάνια']; } return names.sort((a, b) => a.localeCompare(b, 'el')); }
-        function renderNames() { const names = getNames(); const dropdownMenu = document.getElementById('custom-dropdown-menu'); dropdownMenu.innerHTML = ''; names.forEach(name => { const itemDiv = document.createElement('div'); itemDiv.className = 'custom-dropdown-item'; itemDiv.innerText = name; itemDiv.setAttribute('onmousedown', `selectName(this.innerText)`); dropdownMenu.appendChild(itemDiv); }); renderModalNamesList(names); }
-        function renderItems() { const listDiv = document.getElementById('items-list'); listDiv.innerHTML = ""; items.forEach(item => { const entryDiv = document.createElement('div'); entryDiv.className = 'item-entry'; entryDiv.innerHTML = `<span><strong>${item.name}</strong>: ${item.cost.toFixed(2)}€</span><button class="remove-btn" onclick="removeItem(${item.id})">×</button>`; listDiv.appendChild(entryDiv); }); }
-        function removeItem(id) { items = items.filter(item => item.id !== id); renderItems(); }
-        function startNewCalculation() { items = []; itemIdCounter = 0; renderItems(); document.getElementById('service-fee').value = ''; document.getElementById('results-area').style.display = 'none'; document.getElementById('name-input').focus(); }
-        function calculateFinalCosts() { if (items.length === 0) { alert("Πρέπει πρώτα να προσθέσετε άτομα/είδη."); return; } const serviceFeeString = document.getElementById('service-fee').value.replace(',', '.'); const totalServiceFee = parseFloat(serviceFeeString) || 0; const totalInitialCost = items.reduce((sum, item) => sum + item.cost, 0); let totalDiscount = 0; if (totalInitialCost >= 30) totalDiscount = 10; else if (totalInitialCost >= 20) totalDiscount = 7; else if (totalInitialCost >= 15) totalDiscount = 5; else if (totalInitialCost >= 6) totalDiscount = 2; const finalGrandTotal = totalInitialCost - totalDiscount + totalServiceFee; const numberOfPeople = items.length; const serviceFeePerPerson = (totalServiceFee > 0 && numberOfPeople > 0) ? (totalServiceFee / numberOfPeople) : 0; let finalItems = []; items.forEach(item => { const proportion = totalInitialCost > 0 ? (item.cost / totalInitialCost) : 0; const personDiscount = totalDiscount * proportion; const itemCostAfterDiscount = item.cost - personDiscount; const personFinalCost = itemCostAfterDiscount + serviceFeePerPerson; finalItems.push({ name: item.name, originalCost: item.cost, finalCost: personFinalCost }); }); displayResults({ totalInitialCost, totalDiscount, totalServiceFee, finalGrandTotal }, finalItems); saveToHistory({ id: Date.now(), date: new Date().toLocaleString('el-GR'), summary: { totalInitialCost, totalDiscount, totalServiceFee, finalGrandTotal }, items: finalItems, serviceFee: totalServiceFee }); }
-        function displayResults(summary, resultItems) { document.getElementById('summary-title').innerHTML = `Σύνολο Ειδών: <strong>${summary.totalInitialCost.toFixed(2)}€</strong> | Έκπτωση: <strong style="color:var(--success-color);">- ${summary.totalDiscount.toFixed(2)}€</strong> | Κόστος Υπηρ.: <strong style="color:var(--danger-color);">+ ${summary.totalServiceFee.toFixed(2)}€</strong><br>Γενικό Σύνολο: <strong>${summary.finalGrandTotal.toFixed(2)}€</strong>`; const resultsTable = document.getElementById('results-table'); resultsTable.innerHTML = `<thead><tr><th>Όνομα</th><th>Αρχικό Κόστος</th><th>Τελική Πληρωμή</th></tr></thead><tbody></tbody>`; const tableBody = resultsTable.querySelector('tbody'); resultItems.forEach(item => { const row = tableBody.insertRow(); row.innerHTML = `<td>${item.name}</td><td>${item.originalCost.toFixed(2)}€</td><td class="final-cost">${item.finalCost.toFixed(2)}€</td>`; }); document.getElementById('results-area').style.display = 'block'; }
-        function addNameToStorage() { const newNameInput = document.getElementById('new-name-input'); const newName = newNameInput.value.trim(); if (newName) { let names = getNames(); if (!names.find(n => n.toLowerCase() === newName.toLowerCase())) { names.push(newName); localStorage.setItem('peiniataNames', JSON.stringify(names)); renderNames(); newNameInput.value = ''; } else { alert('Αυτό το όνομα υπάρχει ήδη.'); } } }
-        function removeNameFromStorage(nameToRemove) { if (confirm(`Είστε σίγουροι ότι θέλετε να διαγράψετε το όνομα "${nameToRemove}";`)) { let names = getNames(); const updatedNames = names.filter(name => name !== nameToRemove); localStorage.setItem('peiniataNames', JSON.stringify(updatedNames)); renderNames(); } }
-        function renderModalNamesList(names) { const listDiv = document.getElementById('modal-names-list'); listDiv.innerHTML = ''; names.forEach(name => { const itemDiv = document.createElement('div'); itemDiv.className = 'item-entry'; itemDiv.innerHTML = `<span>${name}</span><button class="remove-btn" onclick="removeNameFromStorage('${name}')">&times;</button>`; listDiv.appendChild(itemDiv); }); }
+
+        function initialize() {
+            initializeTheme();
+            renderHistory();
+            renderNames();
+        }
+
+        function setTheme(theme) {
+            document.body.classList.remove('dark-theme');
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.getElementById('theme-icon-sun').style.display = 'block';
+                document.getElementById('theme-icon-moon').style.display = 'none';
+            } else {
+                document.getElementById('theme-icon-sun').style.display = 'none';
+                document.getElementById('theme-icon-moon').style.display = 'block';
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+        }
+        
+        function addItem() {
+            const nameInput = document.getElementById('name-input');
+            const costInput = document.getElementById('cost-input');
+            const name = nameInput.value.trim();
+            const costString = costInput.value.replace(',', '.');
+            const cost = parseFloat(costString);
+
+            if (name === "" || isNaN(cost) || cost <= 0) { alert("Παρακαλώ συμπληρώστε ένα έγκυρο όνομα και θετικό κόστος."); return; }
+            items.push({ id: itemIdCounter++, name, cost });
+            renderItems();
+            nameInput.value = ""; costInput.value = ""; nameInput.focus();
+        }
+        
+        function showDropdown() {
+            document.getElementById('custom-dropdown-menu').style.display = 'block';
+            filterDropdown(); 
+        }
+
+        function hideDropdown() {
+            setTimeout(() => {
+                const dropdown = document.getElementById('custom-dropdown-menu');
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
+            }, 200);
+        }
+
+        function filterDropdown() {
+            const input = document.getElementById('name-input');
+            const filter = input.value.toUpperCase();
+            const dropdown = document.getElementById('custom-dropdown-menu');
+            const items = dropdown.getElementsByClassName('custom-dropdown-item');
+            for (let i = 0; i < items.length; i++) {
+                const txtValue = items[i].textContent || items[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+        
+        function selectName(name) {
+            document.getElementById('name-input').value = name;
+            hideDropdown();
+        }
+
+        function getNames() {
+            let names = JSON.parse(localStorage.getItem('peiniataNames'));
+            if (!names || names.length === 0) {
+                names = ['Αναστασία', 'Βάσω', 'Γιάννης', 'Δήμητρα', 'Ελένη Μπ.', 'Ελένη Τ.', 'Έυα', 'Κατερίνα', 'Στέργιος', 'Ιωάννα', 'Λιάνα', 'Μάνια'];
+            }
+            return names.sort((a, b) => a.localeCompare(b, 'el'));
+        }
+        
+        function renderNames() {
+            const names = getNames();
+            const dropdownMenu = document.getElementById('custom-dropdown-menu');
+            dropdownMenu.innerHTML = '';
+            names.forEach(name => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'custom-dropdown-item';
+                itemDiv.innerText = name;
+                itemDiv.setAttribute('onmousedown', `selectName(this.innerText)`);
+                dropdownMenu.appendChild(itemDiv);
+            });
+            renderModalNamesList(names);
+        }
+        
+        function renderItems() {
+            const listDiv = document.getElementById('items-list');
+            listDiv.innerHTML = "";
+            items.forEach(item => {
+                const entryDiv = document.createElement('div');
+                entryDiv.className = 'item-entry';
+                entryDiv.innerHTML = `<span><strong>${item.name}</strong>: ${item.cost.toFixed(2)}€</span><button class="remove-btn" onclick="removeItem(${item.id})">×</button>`;
+                listDiv.appendChild(entryDiv);
+            });
+        }
+        
+        function removeItem(id) {
+            items = items.filter(item => item.id !== id);
+            renderItems();
+        }
+
+        function startNewCalculation() {
+            items = [];
+            itemIdCounter = 0;
+            renderItems();
+            document.getElementById('service-fee').value = '';
+            document.getElementById('results-area').style.display = 'none';
+            document.getElementById('name-input').focus();
+        }
+
+        function calculateFinalCosts() {
+            if (items.length === 0) { alert("Πρέπει πρώτα να προσθέσετε άτομα/είδη."); return; }
+            
+            const serviceFeeString = document.getElementById('service-fee').value.replace(',', '.');
+            const totalServiceFee = parseFloat(serviceFeeString) || 0;
+            const totalInitialCost = items.reduce((sum, item) => sum + item.cost, 0);
+            
+            let totalDiscount = 0;
+            if (totalInitialCost >= 30) totalDiscount = 10;
+            else if (totalInitialCost >= 20) totalDiscount = 7;
+            else if (totalInitialCost >= 15) totalDiscount = 5;
+            else if (totalInitialCost >= 6) totalDiscount = 2;
+
+            const finalGrandTotal = totalInitialCost - totalDiscount + totalServiceFee;
+            
+            const numberOfPeople = items.length;
+            const serviceFeePerPerson = (totalServiceFee > 0 && numberOfPeople > 0) ? (totalServiceFee / numberOfPeople) : 0;
+            
+            let finalItems = [];
+            items.forEach(item => {
+                const proportion = totalInitialCost > 0 ? (item.cost / totalInitialCost) : 0;
+                const personDiscount = totalDiscount * proportion;
+                const itemCostAfterDiscount = item.cost - personDiscount;
+                
+                const personFinalCost = itemCostAfterDiscount + serviceFeePerPerson;
+                
+                finalItems.push({ name: item.name, originalCost: item.cost, finalCost: personFinalCost });
+            });
+            
+            displayResults({ totalInitialCost, totalDiscount, totalServiceFee, finalGrandTotal }, finalItems);
+            
+            saveToHistory({
+                id: Date.now(),
+                date: new Date().toLocaleString('el-GR'),
+                summary: { totalInitialCost, totalDiscount, totalServiceFee, finalGrandTotal },
+                items: finalItems,
+                serviceFee: totalServiceFee
+            });
+        }
+        
+        function displayResults(summary, resultItems) {
+            document.getElementById('summary-title').innerHTML = `Σύνολο Ειδών: <strong>${summary.totalInitialCost.toFixed(2)}€</strong> | Έκπτωση: <strong style="color:var(--success-color);">- ${summary.totalDiscount.toFixed(2)}€</strong> | Κόστος Υπηρ.: <strong style="color:var(--danger-color);">+ ${summary.totalServiceFee.toFixed(2)}€</strong><br>Γενικό Σύνολο: <strong>${summary.finalGrandTotal.toFixed(2)}€</strong>`;
+            const resultsTable = document.getElementById('results-table');
+            resultsTable.innerHTML = `<thead><tr><th>Όνομα</th><th>Αρχικό Κόστος</th><th>Τελική Πληρωμή</th></tr></thead><tbody></tbody>`;
+            const tableBody = resultsTable.querySelector('tbody');
+            
+            resultItems.forEach(item => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `<td>${item.name}</td><td>${item.originalCost.toFixed(2)}€</td><td class="final-cost">${item.finalCost.toFixed(2)}€</td>`;
+            });
+            
+            document.getElementById('results-area').style.display = 'block';
+        }
+
+        function addNameToStorage() {
+            const newNameInput = document.getElementById('new-name-input');
+            const newName = newNameInput.value.trim();
+            if (newName) {
+                let names = getNames();
+                if (!names.find(n => n.toLowerCase() === newName.toLowerCase())) {
+                    names.push(newName);
+                    localStorage.setItem('peiniataNames', JSON.stringify(names));
+                    renderNames();
+                    newNameInput.value = '';
+                } else { alert('Αυτό το όνομα υπάρχει ήδη.'); }
+            }
+        }
+        function removeNameFromStorage(nameToRemove) {
+            if (confirm(`Είστε σίγουροι ότι θέλετε να διαγράψετε το όνομα "${nameToRemove}";`)) {
+                let names = getNames();
+                const updatedNames = names.filter(name => name !== nameToRemove);
+                localStorage.setItem('peiniataNames', JSON.stringify(updatedNames));
+                renderNames();
+            }
+        }
+        function renderModalNamesList(names) {
+            const listDiv = document.getElementById('modal-names-list');
+            listDiv.innerHTML = '';
+            names.forEach(name => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item-entry';
+                itemDiv.innerHTML = `<span>${name}</span><button class="remove-btn" onclick="removeNameFromStorage('${name}')">&times;</button>`;
+                listDiv.appendChild(itemDiv);
+            });
+        }
         function openNamesModal() { document.getElementById('namesModal').style.display = 'block'; }
         function closeNamesModal() { document.getElementById('namesModal').style.display = 'none'; }
-        function saveToHistory(calculation) { let history = JSON.parse(localStorage.getItem('peiniataHistory')) || []; history.unshift(calculation); if (history.length > 20) history.pop(); localStorage.setItem('peiniataHistory', JSON.stringify(history)); renderHistory(); }
-        function renderHistory() { let history = JSON.parse(localStorage.getItem('peiniataHistory')) || []; const historyList = document.getElementById('history-list'); const clearBtn = document.getElementById('clear-history-btn'); historyList.innerHTML = ""; if (history.length > 0) { clearBtn.style.display = 'block'; history.forEach(calc => { const itemDiv = document.createElement('div'); itemDiv.className = 'history-item'; itemDiv.setAttribute('onclick', `loadFromHistory(${calc.id})`); itemDiv.innerHTML = `<div class="history-item-header"><span>${calc.date}</span><span>${calc.summary.finalGrandTotal.toFixed(2)}€</span></div><div style="font-size: 0.9em; color: var(--text-color);">${calc.items.length} άτομα/είδη</div>`; historyList.appendChild(itemDiv); }); } else { clearBtn.style.display = 'none'; historyList.innerHTML = "<p style='color: var(--text-color);'>Δεν υπάρχουν αποθηκευμένοι υπολογισμοί.</p>"; } }
-        function loadFromHistory(id) { let history = JSON.parse(localStorage.getItem('peiniataHistory')) || []; const calculation = history.find(c => c.id === id); if (calculation) { items = calculation.items.map((item, index) => ({ id: index, name: item.name, cost: item.originalCost })); itemIdCounter = items.length; document.getElementById('service-fee').value = calculation.serviceFee; renderItems(); displayResults(calculation.summary, calculation.items); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
-        function clearHistory() { if (confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε ολόκληρο το ιστορικό;")) { localStorage.removeItem('peiniataHistory'); renderHistory(); } }
+        function saveToHistory(calculation) {
+            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
+            history.unshift(calculation);
+            if (history.length > 20) history.pop();
+            localStorage.setItem('peiniataHistory', JSON.stringify(history));
+            renderHistory();
+        }
+        function renderHistory() {
+            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
+            const historyList = document.getElementById('history-list');
+            const clearBtn = document.getElementById('clear-history-btn');
+            historyList.innerHTML = "";
+            if (history.length > 0) {
+                clearBtn.style.display = 'block';
+                history.forEach(calc => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'history-item';
+                    itemDiv.setAttribute('onclick', `loadFromHistory(${calc.id})`);
+                    itemDiv.innerHTML = `<div class="history-item-header"><span>${calc.date}</span><span>${calc.summary.finalGrandTotal.toFixed(2)}€</span></div><div style="font-size: 0.9em; color: var(--text-color);">${calc.items.length} άτομα/είδη</div>`;
+                    historyList.appendChild(itemDiv);
+                });
+            } else {
+                clearBtn.style.display = 'none';
+                historyList.innerHTML = "<p style='color: var(--text-color);'>Δεν υπάρχουν αποθηκευμένοι υπολογισμοί.</p>";
+            }
+        }
+        function loadFromHistory(id) {
+            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
+            const calculation = history.find(c => c.id === id);
+            if (calculation) {
+                items = calculation.items.map((item, index) => ({ id: index, name: item.name, cost: item.originalCost }));
+                itemIdCounter = items.length;
+                document.getElementById('service-fee').value = calculation.serviceFee;
+                renderItems();
+                displayResults(calculation.summary, calculation.items);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        function clearHistory() {
+            if (confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε ολόκληρο το ιστορικό;")) {
+                localStorage.removeItem('peiniataHistory');
+                renderHistory();
+            }
+        }
         document.getElementById('cost-input').addEventListener('keyup', function(event) { if (event.key === 'Enter') addItem(); });
         document.getElementById('name-input').addEventListener('blur', hideDropdown);
-        window.onclick = function(event) { const modal = document.getElementById('namesModal'); if (event.target == modal) { closeNamesModal(); } const nameWrapper = document.querySelector('.name-input-wrapper'); if (nameWrapper && !nameWrapper.contains(event.target)) { hideDropdown(); } }
+        window.onclick = function(event) {
+            const modal = document.getElementById('namesModal');
+            if (event.target == modal) { closeNamesModal(); }
+            const nameWrapper = document.querySelector('.name-input-wrapper');
+            if (nameWrapper && !nameWrapper.contains(event.target)) {
+                hideDropdown();
+            }
+        }
     </script>
 </body>
 </html>
