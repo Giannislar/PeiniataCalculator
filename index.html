@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peiniata Calculator</title>
+
+    <!-- PWA Manifest and Theme Color -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/favicon-16x16.png">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
     <style>
         :root {
             --primary-color: #007bff;
@@ -111,7 +119,6 @@
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border-color); }
         th { font-weight: 600; background-color: var(--table-header-color); }
         .final-cost { font-weight: bold; color: var(--primary-color); font-size: 1.1em; }
-        
         .floating-buttons { position: fixed; top: 20px; right: 20px; z-index: 1002; display: flex; gap: 10px; }
         .floating-buttons .icon-btn {
             width: 45px; height: 45px;
@@ -203,6 +210,19 @@
     </div>
 
     <script>
+        // --- PWA Service Worker Registration ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js') // Path is relative to root
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
         let items = []; let itemIdCounter = 0;
 
         function initialize() {
