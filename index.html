@@ -135,6 +135,17 @@
             fill: none;
             transition: stroke 0.3s;
         }
+
+        /* **ΑΛΛΑΓΗ:** Media Query για responsive layout σε μικρές οθόνες */
+        @media (max-width: 600px) {
+            .input-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .secondary-actions {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body onload="initialize()">
