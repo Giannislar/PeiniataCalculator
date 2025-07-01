@@ -1,5 +1,5 @@
 // Define a cache name
-const CACHE_NAME = 'peiniata-calculator-v2';
+const CACHE_NAME = 'peiniata-calculator-v1';
 
 // List of files to cache. Make sure these paths match your files on GitHub.
 const urlsToCache = [
