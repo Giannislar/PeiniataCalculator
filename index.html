@@ -49,19 +49,25 @@
             margin-bottom: 25px; border: 1px solid var(--border-color);
             transition: background-color 0.3s, border-color 0.3s;
         }
-        /* **ΔΙΟΡΘΩΣΗ:** Αλλαγή σε CSS Grid για τέλεια στοίχιση */
         .input-section { 
             display: grid;
             grid-template-columns: 1fr 1fr auto;
             gap: 10px; 
             align-items: center;
         }
-        .input-section input {
+        /* **ΔΙΟΡΘΩΣΗ:** Ενιαία κλάση για όλα τα inputs */
+        .form-input {
             padding: 12px; border: 1px solid var(--border-color);
             border-radius: 8px; font-size: 1em; font-family: 'Poppins', sans-serif;
             background-color: var(--input-bg-color); color: var(--text-color);
-            width: 100%; /* Εξασφαλίζει ότι το input γεμίζει τον χώρο του */
-            box-sizing: border-box; /* Σημαντικό για σωστό υπολογισμό μεγέθους */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        ::placeholder {
+            color: var(--text-color);
+            opacity: 0.6;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
         }
         .name-input-wrapper { position: relative; }
         .btn-add {
@@ -136,10 +142,9 @@
             transition: stroke 0.3s;
         }
         
-        /* **ΔΙΟΡΘΩΣΗ:** Media Query για responsive layout σε μικρές οθόνες */
         @media (max-width: 600px) {
             .input-section {
-                grid-template-columns: 1fr; /* Stack all items vertically */
+                grid-template-columns: 1fr;
             }
             .secondary-actions {
                 flex-direction: column;
@@ -170,17 +175,17 @@
         <div class="card">
             <div class="input-section">
                 <div class="name-input-wrapper">
-                    <input type="text" id="name-input" placeholder="Επιλογή ή νέο όνομα" onkeyup="filterDropdown()" onfocus="showDropdown()">
+                    <input type="text" id="name-input" class="form-input" placeholder="Επιλογή ή νέο όνομα" onkeyup="filterDropdown()" onfocus="showDropdown()">
                     <div id="custom-dropdown-menu" class="custom-dropdown"></div>
                 </div>
-                <input type="text" id="cost-input" placeholder="Κόστος (€)" inputmode="decimal">
+                <input type="text" id="cost-input" class="form-input" placeholder="Κόστος (€)" inputmode="decimal">
                 <button class="btn-add" onclick="addItem()">Προσθήκη +</button>
             </div>
             <div id="items-list"></div>
         </div>
         <div class="card">
             <label for="service-fee" style="font-weight: 500;">Επιπλέον κόστος υπηρεσίας</label>
-            <input type="text" id="service-fee" placeholder="π.χ. 1.50" inputmode="decimal" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-top: 8px; box-sizing: border-box; background-color: var(--input-bg-color); color: var(--text-color);">
+            <input type="text" id="service-fee" class="form-input" placeholder="π.χ. 1.50" inputmode="decimal" style="margin-top: 8px;">
         </div>
         <div class="actions-container">
             <button class="main-action btn-success" onclick="calculateFinalCosts()">Υπολογισμός κόστους</button>
@@ -204,7 +209,7 @@
             <hr>
             <h4>Προσθήκη νέου ονόματος</h4>
             <div class="input-section" style="flex-direction: column;">
-                <input type="text" id="new-name-input" placeholder="Πληκτρολογήστε όνομα">
+                <input type="text" id="new-name-input" class="form-input" placeholder="Πληκτρολογήστε όνομα">
                 <button class="modal-action-btn" onclick="addNameToStorage()">Προσθήκη ονόματος</button>
             </div>
         </div>
