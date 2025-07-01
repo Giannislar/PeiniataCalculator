@@ -49,6 +49,7 @@
             margin-bottom: 25px; border: 1px solid var(--border-color);
             transition: background-color 0.3s, border-color 0.3s;
         }
+        /* **ΔΙΟΡΘΩΣΗ:** Αλλαγή σε CSS Grid για τέλεια στοίχιση */
         .input-section { 
             display: grid;
             grid-template-columns: 1fr 1fr auto;
@@ -59,6 +60,8 @@
             padding: 12px; border: 1px solid var(--border-color);
             border-radius: 8px; font-size: 1em; font-family: 'Poppins', sans-serif;
             background-color: var(--input-bg-color); color: var(--text-color);
+            width: 100%; /* Εξασφαλίζει ότι το input γεμίζει τον χώρο του */
+            box-sizing: border-box; /* Σημαντικό για σωστό υπολογισμό μεγέθους */
         }
         .name-input-wrapper { position: relative; }
         .btn-add {
@@ -133,9 +136,10 @@
             transition: stroke 0.3s;
         }
         
+        /* **ΔΙΟΡΘΩΣΗ:** Media Query για responsive layout σε μικρές οθόνες */
         @media (max-width: 600px) {
             .input-section {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Stack all items vertically */
             }
             .secondary-actions {
                 flex-direction: column;
