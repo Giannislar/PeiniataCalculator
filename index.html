@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peiniata Calculator</title>
+    <title>Peiñiata Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -49,13 +49,18 @@
             margin-bottom: 25px; border: 1px solid var(--border-color);
             transition: background-color 0.3s, border-color 0.3s;
         }
-        .input-section { display: flex; gap: 10px; align-items: center;}
+        .input-section { 
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 10px; 
+            align-items: center;
+        }
         .input-section input {
-            flex: 1; padding: 12px; border: 1px solid var(--border-color);
+            padding: 12px; border: 1px solid var(--border-color);
             border-radius: 8px; font-size: 1em; font-family: 'Poppins', sans-serif;
             background-color: var(--input-bg-color); color: var(--text-color);
         }
-        .name-input-wrapper { position: relative; flex: 1; }
+        .name-input-wrapper { position: relative; }
         .btn-add {
             padding: 12px 20px; background-color: var(--success-color); color: white; border: none;
             border-radius: 8px; font-weight: 500; cursor: pointer; transition: background-color 0.2s, transform 0.1s;
@@ -128,11 +133,9 @@
             transition: stroke 0.3s;
         }
         
-        /* **ΔΙΟΡΘΩΣΗ:** Media Query για responsive layout σε μικρές οθόνες */
         @media (max-width: 600px) {
             .input-section {
-                flex-direction: column;
-                align-items: stretch;
+                grid-template-columns: 1fr;
             }
             .secondary-actions {
                 flex-direction: column;
@@ -153,9 +156,9 @@
             </div>
         </div>
         
-        <h1 style="margin-top: 20px;">Peiniata Calculator</h1>
+        <h1 style="margin-top: 20px;">Peiñiata Calculator</h1>
         <div style="text-align: center; margin-bottom: 25px;">
-            <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.png" alt="Peiniata Calculator Logo" style="max-width: 250px; height: auto; border-radius: 12px;">
+            <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.png" alt="Peiñiata Calculator Logo" style="max-width: 250px; height: auto; border-radius: 12px;">
         </div>
     </header>
 
@@ -173,7 +176,7 @@
         </div>
         <div class="card">
             <label for="service-fee" style="font-weight: 500;">Επιπλέον κόστος υπηρεσίας</label>
-            <input type="text" id="service-fee" placeholder="0" inputmode="decimal" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-top: 8px; box-sizing: border-box; background-color: var(--input-bg-color); color: var(--text-color);">
+            <input type="text" id="service-fee" placeholder="π.χ. 1.50" inputmode="decimal" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-top: 8px; box-sizing: border-box; background-color: var(--input-bg-color); color: var(--text-color);">
         </div>
         <div class="actions-container">
             <button class="main-action btn-success" onclick="calculateFinalCosts()">Υπολογισμός κόστους</button>
