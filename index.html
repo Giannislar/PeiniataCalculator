@@ -7,8 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Link to load all necessary icons: light_mode, dark_mode, and history -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=light_mode,dark_mode,history" />
     <link rel="icon" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/favicon-32x32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/favicon-16x16.png">
@@ -36,10 +34,6 @@
             --table-header-color: #2a2a2a;
             --box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            user-select: none;
-        }
         body { 
             font-family: 'Poppins', sans-serif;
             max-width: 700px; margin: 30px auto; padding: 15px; 
@@ -47,7 +41,7 @@
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
         }
-        h1 { text-align: center; color: var(--danger-color); margin-bottom: 25px; font-weight: 700; margin-top: 10px; }
+        h1 { text-align: center; color: var(--danger-color); margin-bottom: 15px; font-weight: 700; margin-top: 20px; }
         h2 { text-align: center; color: var(--text-color); margin-bottom: 25px;}
         .card {
             background-color: var(--card-bg-color); padding: 20px;
@@ -97,8 +91,8 @@
         .custom-dropdown-item:hover { background-color: var(--history-hover-color); }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
         .modal-content {
-             background-color: var(--card-bg-color); margin: 10% auto; padding: 25px; 
-             border: 1px solid var(--border-color); width: 90%; max-width: 600px; 
+             background-color: var(--card-bg-color); margin: 15% auto; padding: 25px; 
+             border: 1px solid var(--border-color); width: 80%; max-width: 500px; 
              border-radius: 12px; animation: modalopen 0.4s;
         }
         @keyframes modalopen { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -117,40 +111,35 @@
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border-color); }
         th { font-weight: 600; background-color: var(--table-header-color); }
         .final-cost { font-weight: bold; color: var(--primary-color); font-size: 1.1em; }
-        
-        .floating-buttons { position: fixed; top: 20px; right: 20px; z-index: 1002; display: flex; gap: 10px; }
-        .floating-buttons .icon-btn {
-            width: 45px; height: 45px;
+        #theme-toggle {
+            position: fixed; top: 20px; right: 20px; width: 45px; height: 45px;
             background-color: var(--card-bg-color); border: 1px solid var(--border-color);
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            cursor: pointer; box-shadow: var(--box-shadow);
+            cursor: pointer; box-shadow: var(--box-shadow); z-index: 1002;
             transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
         }
-        .floating-buttons .icon-btn:hover { transform: scale(1.1); }
-        .floating-buttons .icon-btn .material-symbols-outlined {
-            font-size: 24px;
-            color: var(--text-color);
-            transition: color 0.3s;
+        #theme-toggle:hover { transform: scale(1.1); }
+        #theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-color);
+            fill: none;
+            transition: stroke 0.3s;
         }
     </style>
 </head>
 <body onload="initialize()">
 
+    <div id="theme-toggle" onclick="toggleTheme()">
+        <svg id="theme-icon-sun" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </div>
+    
     <header>
-        <div class="floating-buttons">
-            <div id="history-toggle" class="icon-btn" onclick="openHistoryModal()">
-                <span class="material-symbols-outlined">history</span>
-            </div>
-            <div id="theme-toggle" class="icon-btn" onclick="toggleTheme()">
-                <span id="theme-icon-sun" class="material-symbols-outlined">light_mode</span>
-                <span id="theme-icon-moon" class="material-symbols-outlined">dark_mode</span>
-            </div>
-        </div>
-        
-        <div style="text-align: center; padding-top: 60px;"> <!-- Padding to avoid overlap with floating buttons -->
-            <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.png" alt="Peiniata Calculator Logo" style="max-width: 250px; height: auto; border-radius: 12px; margin-bottom: 15px;">
-        </div>
         <h1>Peiniata Calculator</h1>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.png" alt="Peiniata Calculator Logo" style="max-width: 250px; height: auto; border-radius: 12px;">
+        </div>
     </header>
 
     <main>
@@ -166,14 +155,14 @@
             <div id="items-list"></div>
         </div>
         <div class="card">
-            <label for="service-fee" style="font-weight: 500;">Επιπλέον Κόστος Υπηρεσίας</label>
+            <label for="service-fee" style="font-weight: 500;">Επιπλέον κόστος υπηρεσίας</label>
             <input type="text" id="service-fee" placeholder="0" inputmode="decimal" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-top: 8px; box-sizing: border-box; background-color: var(--input-bg-color); color: var(--text-color);">
         </div>
         <div class="actions-container">
-            <button class="main-action btn-success" onclick="calculateFinalCosts()">Υπολογισμός Κόστους</button>
+            <button class="main-action btn-success" onclick="calculateFinalCosts()">Υπολογισμός κόστους</button>
             <div class="secondary-actions">
-                <button class="btn-danger" onclick="startNewCalculation()">Νέος Υπολογισμός</button>
-                <button class="btn-primary" onclick="openNamesModal()">Διαχείριση Ονομάτων</button>
+                <button class="btn-danger" onclick="startNewCalculation()">Νέος υπολογισμός</button>
+                <button class="btn-primary" onclick="openNamesModal()">Διαχείριση ονομάτων</button>
             </div>
         </div>
         <div class="card" id="results-area" style="display:none; margin-top: 25px;">
@@ -181,28 +170,24 @@
             <p id="summary-title" style="font-size: 1.1em; text-align: center; line-height: 1.6;"></p>
             <table id="results-table"></table>
         </div>
+        <div class="card" id="history-section" style="margin-top: 25px;">
+            <h2>Ιστορικό υπολογισμών</h2>
+            <div id="history-list"></div>
+            <button id="clear-history-btn" class="clear-history-btn" style="display:none;" onclick="clearHistory()">Καθαρισμός ιστορικού</button>
+        </div>
     </main>
 
     <div id="namesModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeNamesModal()">&times;</span>
-            <h2>Διαχείριση Ονομάτων</h2>
+            <h2>Διαχείριση ονομάτων</h2>
             <div id="modal-names-list"></div>
             <hr>
-            <h4>Προσθήκη Νέου Ονόματος</h4>
+            <h4>Προσθήκη νέου ονόματος</h4>
             <div class="input-section" style="flex-direction: column;">
                 <input type="text" id="new-name-input" placeholder="Πληκτρολογήστε όνομα">
-                <button class="modal-action-btn" onclick="addNameToStorage()">Προσθήκη Ονόματος</button>
+                <button class="modal-action-btn" onclick="addNameToStorage()">Προσθήκη ονόματος</button>
             </div>
-        </div>
-    </div>
-
-    <div id="historyModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeHistoryModal()">&times;</span>
-            <h2>Ιστορικό Υπολογισμών</h2>
-            <div id="modal-history-list"></div>
-            <button id="clear-history-btn" class="clear-history-btn" style="display:none;" onclick="clearHistory()">Καθαρισμός Ιστορικού</button>
         </div>
     </div>
 
@@ -374,9 +359,9 @@
         }
         
         function displayResults(summary, resultItems) {
-            document.getElementById('summary-title').innerHTML = `Σύνολο Ειδών: <strong>${summary.totalInitialCost.toFixed(2)}€</strong> | Έκπτωση: <strong style="color:var(--success-color);">- ${summary.totalDiscount.toFixed(2)}€</strong> | Κόστος Υπηρ.: <strong style="color:var(--danger-color);">+ ${summary.totalServiceFee.toFixed(2)}€</strong><br>Γενικό Σύνολο: <strong>${summary.finalGrandTotal.toFixed(2)}€</strong>`;
+            document.getElementById('summary-title').innerHTML = `Σύνολο ειδών: <strong>${summary.totalInitialCost.toFixed(2)}€</strong> | Έκπτωση: <strong style="color:var(--success-color);">- ${summary.totalDiscount.toFixed(2)}€</strong> | Κόστος υπηρεσίας: <strong style="color:var(--danger-color);">+ ${summary.totalServiceFee.toFixed(2)}€</strong><br>Γενικό σύνολο: <strong>${summary.finalGrandTotal.toFixed(2)}€</strong>`;
             const resultsTable = document.getElementById('results-table');
-            resultsTable.innerHTML = `<thead><tr><th>Όνομα</th><th>Αρχικό Κόστος</th><th>Τελική Πληρωμή</th></tr></thead><tbody></tbody>`;
+            resultsTable.innerHTML = `<thead><tr><th>Όνομα</th><th>Αρχικό κόστος</th><th>Τελική πληρωμή</th></tr></thead><tbody></tbody>`;
             const tableBody = resultsTable.querySelector('tbody');
             
             resultItems.forEach(item => {
@@ -420,7 +405,6 @@
         }
         function openNamesModal() { document.getElementById('namesModal').style.display = 'block'; }
         function closeNamesModal() { document.getElementById('namesModal').style.display = 'none'; }
-        
         function saveToHistory(calculation) {
             let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
             history.unshift(calculation);
@@ -429,10 +413,10 @@
             renderHistory();
         }
         function renderHistory() {
-            const historyList = document.getElementById('modal-history-list');
+            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
+            const historyList = document.getElementById('history-list');
             const clearBtn = document.getElementById('clear-history-btn');
             historyList.innerHTML = "";
-            let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
             if (history.length > 0) {
                 clearBtn.style.display = 'block';
                 history.forEach(calc => {
@@ -444,14 +428,13 @@
                 });
             } else {
                 clearBtn.style.display = 'none';
-                historyList.innerHTML = "<p style='color: var(--text-color); text-align: center;'>Δεν υπάρχουν αποθηκευμένοι υπολογισμοί.</p>";
+                historyList.innerHTML = "<p style='color: var(--text-color);'>Δεν υπάρχουν αποθηκευμένοι υπολογισμοί.</p>";
             }
         }
         function loadFromHistory(id) {
             let history = JSON.parse(localStorage.getItem('peiniataHistory')) || [];
             const calculation = history.find(c => c.id === id);
             if (calculation) {
-                closeHistoryModal();
                 items = calculation.items.map((item, index) => ({ id: index, name: item.name, cost: item.originalCost }));
                 itemIdCounter = items.length;
                 document.getElementById('service-fee').value = calculation.serviceFee;
@@ -466,16 +449,11 @@
                 renderHistory();
             }
         }
-        function openHistoryModal() { document.getElementById('historyModal').style.display = 'block'; }
-        function closeHistoryModal() { document.getElementById('historyModal').style.display = 'none'; }
-
         document.getElementById('cost-input').addEventListener('keyup', function(event) { if (event.key === 'Enter') addItem(); });
         document.getElementById('name-input').addEventListener('blur', hideDropdown);
         window.onclick = function(event) {
-            const namesModal = document.getElementById('namesModal');
-            const historyModal = document.getElementById('historyModal');
-            if (event.target == namesModal) { closeNamesModal(); }
-            if (event.target == historyModal) { closeHistoryModal(); }
+            const modal = document.getElementById('namesModal');
+            if (event.target == modal) { closeNamesModal(); }
             const nameWrapper = document.querySelector('.name-input-wrapper');
             if (nameWrapper && !nameWrapper.contains(event.target)) {
                 hideDropdown();
