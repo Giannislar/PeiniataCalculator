@@ -126,68 +126,89 @@
             fill: none;
             transition: stroke 0.3s;
         }
+        /* Classes to replace inline styles */
+        .text-center { text-align: center; }
+        .mb-25 { margin-bottom: 25px; }
+        .mb-15 { margin-bottom: 15px; }
+        .logo { max-width: 250px; height: auto; border-radius: 12px; }
+        .service-fee-input { width: 100%; padding: 12px; border-radius: 8px; margin-top: 8px; box-sizing: border-box; }
+        .summary-title { font-size: 1.1em; text-align: center; line-height: 1.6; }
+        .modal-input-section { flex-direction: column; }
     </style>
 </head>
 <body onload="initialize()">
 
-    <div id="theme-toggle" onclick="toggleTheme()">
-        <svg id="theme-icon-sun" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-    </div>
-    
-    <h1>Peiniata Calculator</h1>
+    <header>
+        <div id="theme-toggle" role="button" aria-label="Toggle Dark Mode" onclick="toggleTheme()">
+            <svg id="theme-icon-sun" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </div>
+        
+        <h1 class="mb-15">Peiniata Calculator</h1>
 
-    <div style="text-align: center; margin-bottom: 25px;">
-        <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.png" alt="Peiniata Calculator Logo" style="max-width: 250px; height: auto; border-radius: 12px;">
-    </div>
+        <div class="text-center mb-25">
+            <img src="https://raw.githubusercontent.com/giannislar/PeiniataCalculator/main/Peiniata_Calculator_Logo-min.png" alt="Peiniata Calculator Logo" class="logo">
+        </div>
+    </header>
 
-    <div class="card">
-        <div class="input-section">
-            <div class="name-input-wrapper">
-                <input type="text" id="name-input" placeholder="Επιλογή ή νέο όνομα" onkeyup="filterDropdown()" onfocus="showDropdown()">
-                <div id="custom-dropdown-menu" class="custom-dropdown"></div>
+    <main>
+        <section class="card" aria-labelledby="add-item-heading">
+            <h2 id="add-item-heading" class="visually-hidden">Add Item</h2>
+            <div class="input-section">
+                <div class="name-input-wrapper">
+                    <label for="name-input" class="visually-hidden">Όνομα Ατόμου</label>
+                    <input type="text" id="name-input" placeholder="Επιλογή ή νέο όνομα" onkeyup="filterDropdown()" onfocus="showDropdown()">
+                    <div id="custom-dropdown-menu" class="custom-dropdown"></div>
+                </div>
+                <label for="cost-input" class="visually-hidden">Κόστος</label>
+                <input type="text" id="cost-input" placeholder="Κόστος (€)" inputmode="decimal">
+                <button class="btn-add" onclick="addItem()">Προσθήκη +</button>
             </div>
-            <input type="text" id="cost-input" placeholder="Κόστος (€)" inputmode="decimal">
-            <button class="btn-add" onclick="addItem()">Προσθήκη +</button>
-        </div>
-        <div id="items-list"></div>
-    </div>
-    <div class="card">
-        <label for="service-fee" style="font-weight: 500;">Επιπλέον Κόστος Υπηρεσίας</label>
-        <input type="text" id="service-fee" placeholder="0" inputmode="decimal" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; margin-top: 8px; box-sizing: border-box; background-color: var(--input-bg-color); color: var(--text-color);">
-    </div>
-    <div class="actions-container">
-        <button class="main-action btn-success" onclick="calculateFinalCosts()">Υπολογισμός Κόστους</button>
-        <div class="secondary-actions">
-            <button class="btn-danger" onclick="startNewCalculation()">Νέος Υπολογισμός</button>
-            <button class="btn-primary" onclick="openNamesModal()">Διαχείριση Ονομάτων</button>
-        </div>
-    </div>
-    <div class="card" id="results-area" style="display:none; margin-top: 25px;">
-        <h2 style="margin-bottom: 15px;">Αποτελέσματα</h2>
-        <p id="summary-title" style="font-size: 1.1em; text-align: center; line-height: 1.6;"></p>
-        <table id="results-table"></table>
-    </div>
-    <div class="card" id="history-section" style="margin-top: 25px;">
-        <h2>Ιστορικό Υπολογισμών</h2>
-        <div id="history-list"></div>
-        <button id="clear-history-btn" class="clear-history-btn" style="display:none;" onclick="clearHistory()">Καθαρισμός Ιστορικού</button>
-    </div>
-    <div id="namesModal" class="modal">
+            <div id="items-list"></div>
+        </section>
+
+        <section class="card" aria-labelledby="service-fee-heading">
+            <label for="service-fee" id="service-fee-heading" style="font-weight: 500;">Επιπλέον Κόστος Υπηρεσίας</label>
+            <input type="text" id="service-fee" placeholder="0" inputmode="decimal" class="service-fee-input">
+        </section>
+
+        <section class="actions-container">
+            <button class="main-action btn-success" onclick="calculateFinalCosts()">Υπολογισμός Κόστους</button>
+            <div class="secondary-actions">
+                <button class="btn-danger" onclick="startNewCalculation()">Νέος Υπολογισμός</button>
+                <button class="btn-primary" onclick="openNamesModal()">Διαχείριση Ονομάτων</button>
+            </div>
+        </section>
+
+        <section class="card" id="results-area" style="display:none;" aria-live="polite">
+            <h2>Αποτελέσματα</h2>
+            <p id="summary-title" class="summary-title"></p>
+            <table id="results-table"></table>
+        </section>
+
+        <section class="card" id="history-section">
+            <h2>Ιστορικό Υπολογισμών</h2>
+            <div id="history-list"></div>
+            <button id="clear-history-btn" class="clear-history-btn" style="display:none;" onclick="clearHistory()">Καθαρισμός Ιστορικού</button>
+        </section>
+    </main>
+
+    <div id="namesModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeNamesModal()">&times;</span>
-            <h2>Διαχείριση Ονομάτων</h2>
+            <span class="close-btn" role="button" aria-label="Close" onclick="closeNamesModal()">&times;</span>
+            <h2 id="modal-title">Διαχείριση Ονομάτων</h2>
             <div id="modal-names-list"></div>
             <hr>
             <h4>Προσθήκη Νέου Ονόματος</h4>
-            <div class="input-section" style="flex-direction: column;">
+            <div class="input-section modal-input-section">
+                <label for="new-name-input" class="visually-hidden">Νέο Όνομα</label>
                 <input type="text" id="new-name-input" placeholder="Πληκτρολογήστε όνομα">
                 <button class="modal-action-btn" onclick="addNameToStorage()">Προσθήκη Ονόματος</button>
             </div>
         </div>
     </div>
 
-    <script>
+    <script defer>
         let items = []; let itemIdCounter = 0;
 
         function initialize() {
